@@ -24,7 +24,9 @@ def buildPayload():
 
 # TODO #2 Make a POST request to /search
 def make_request(payload):
-    r = requests.post(f"http://{HOST}/search",proxies=proxies, verify=False, data={"engine":"Google","query":payload})
+    # Swap the commented request lines if you'd like to first send the request to a proxy on port 8080.
+    #r = requests.post(f"http://{HOST}/search",proxies=proxies, verify=False, data={"engine":"Google","query":payload})
+    r = requests.post(f"http://{HOST}/search", data={"engine":"Google","query":payload})
 
 if __name__ == "__main__":
     try:

